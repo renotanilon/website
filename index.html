@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login UI with Interactive Emoji Faces</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      display: flex;
+      height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+      max-width: 1000px;
+      margin: auto;
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .left {
+      flex: 1;
+      background-color: #f1f1f1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shapes {
+      display: flex;
+      align-items: flex-end;
+      gap: 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .shape {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      color: white;
+      position: relative;
+      transform-origin: center;
+      opacity: 0;
+      animation: fadeIn 0.5s forwards;
+      transition: transform 0.2s ease-out;
+    }
+
+    /* Face features */
+    .face {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .eyes {
+      position: absolute;
+      top: 30%;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .eye {
+      width: 12px;
+      height: 12px;
+      background: white;
+      border-radius: 50%;
+      position: relative;
+      transform-origin: center;
+      transition: transform 0.1s ease-out;
+    }
+
+    .eye::after {
+      content: "";
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: black;
+      border-radius: 50%;
+      top: 2px;
+      left: 3px;
+      transition: all 0.1s ease-out;
+    }
+
+    .mouth {
+      position: absolute;
+      bottom: 25%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40%;
+      height: 10px;
+      background: white;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+
+    /* Different shape styles */
+    .shape.orange { 
+      background-color: orange; 
+      animation-delay: 0.1s;
+    }
+    
+    .shape.purple { 
+      background-color: purple; 
+      animation-delay: 0.2s;
+    }
+    
+    .shape.black { 
+      background-color: black; 
+      animation-delay: 0.3s;
+    }
+    
+    .shape.yellow { 
+      background-color: gold; 
+      animation-delay: 0.4s;
+    }
+
+    /* Entry animations */
+    @keyframes fadeIn {
+      from { 
+        opacity: 0;
+        transform: translateY(50px) scale(0.8);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Continuous idle animations */
+    .shape.orange { animation: fadeIn 0.5s forwards, bounce 4s infinite 0.5s; }
+    .shape.purple { animation: fadeIn 0.5s forwards, sway 5s infinite 0.5s; }
+    .shape.black { animation: fadeIn 0.5s forwards, pulse 6s infinite 0.5s; }
+    .shape.yellow { animation: fadeIn 0.5s forwards, wiggle 7s infinite 0.5s; }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes sway {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(5deg); }
+      75% { transform: rotate(-5deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    @keyframes wiggle {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+    
+    /* Success and error animations */
+    @keyframes jump {
+      0% { transform: translateY(0) rotate(0); }
+      50% { transform: translateY(-40px) rotate(10deg); }
+      100% { transform: translateY(0) rotate(0); }
+    }
+    
+    @keyframes angryShake {
+      0% { transform: translateX(0) rotate(0); }
+      10% { transform: translateX(-15px) rotate(-10deg); }
+      25% { transform: translateX(15px) rotate(10deg); }
+      40% { transform: translateX(-15px) rotate(-10deg); }
+      55% { transform: translateX(15px) rotate(10deg); }
+      70% { transform: translateX(-15px) rotate(-10deg); }
+      85% { transform: translateX(15px) rotate(10deg); }
+      100% { transform: translateX(0) rotate(0); }
+    }
+
+    /* Happy face animation */
+    @keyframes happyBounce {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.2); }
+      60% { transform: scale(0.8); }
+      80% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    /* Floating particles animation */
+    .particle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      opacity: 0.6;
+      pointer-events: none;
+      z-index: 5;
+      animation: float 10s linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) translateX(0); opacity: 0; }
+      10% { opacity: 0.8; }
+      90% { opacity: 0.2; }
+      100% { transform: translateY(-200px) translateX(100px); opacity: 0; }
+    }
+
+    /* Anger particles for wrong login */
+    .anger-particle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: red;
+      border-radius: 50%;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @keyframes angerBurst {
+      0% { transform: translateY(0) translateX(0); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translateY(-40px) translateX(var(--x-direction)); opacity: 0; }
+    }
+
+    /* Happy particles for successful login */
+    .happy-particle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: yellow;
+      border-radius: 50%;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @keyframes happyBurst {
+      0% { transform: scale(0); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: scale(2) translateY(-30px); opacity: 0; }
+    }
+
+    .right {
+      flex: 1;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    .subtext {
+      margin-bottom: 30px;
+      color: #555;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .checkbox-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    button.login-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #000;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button.login-btn:hover {
+      background-color: #333;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .bottom-text {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .bottom-text a {
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .left {
+        display: none;
+      }
+
+      .right {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left" id="animationContainer">
+      <div class="shapes">
+        <div class="shape orange">
+          <div class="face">
+            <div class="eyes">
+              <div class="eye"></div>
+              <div class="eye"></div>
+            </div>
+            <div class="mouth"></div>
+          </div>
+        </div>
+        <div class="shape purple">
+          <div class="face">
+            <div class="eyes">
+              <div class="eye"></div>
+              <div class="eye"></div>
+            </div>
+            <div class="mouth"></div>
+          </div>
+        </div>
+        <div class="shape black">
+          <div class="face">
+            <div class="eyes">
+              <div class="eye"></div>
+              <div class="eye"></div>
+            </div>
+            <div class="mouth"></div>
+          </div>
+        </div>
+        <div class="shape yellow">
+          <div class="face">
+            <div class="eyes">
+              <div class="eye"></div>
+              <div class="eye"></div>
+            </div>
+            <div class="mouth"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <h2>Welcome back!</h2>
+      <p class="subtext">Please enter your details</p>
+      <form id="loginForm">
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <div class="checkbox-container">
+          <label><input type="checkbox"> Remember for 30 days</label>
+          <a href="#" style="font-size: 12px;">Forgot password?</a>
+        </div>
+        <button type="submit" class="login-btn">Log In</button>
+      </form>
+      <div class="bottom-text">
+        Don't have an account? <a href="#">Sign Up</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Handle login form submission
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      const validEmail = "Reno@gmail.com";
+      const validPassword = "123456";
+
+      const shapes = document.querySelectorAll('.shape');
+      
+      if (email === validEmail && password === validPassword) {
+        // Successful login animation
+        shapes.forEach(shape => {
+          // Make happy eyes (curved)
+          const eyes = shape.querySelectorAll('.eye');
+          eyes.forEach(eye => {
+            eye.style.transform = "scaleY(0.5)";
+            eye.style.borderRadius = "50% 50% 0 0";
+          });
+          
+          // Make happy mouth
+          const mouth = shape.querySelector('.mouth');
+          mouth.style.height = "20px";
+          mouth.style.borderRadius = "0 0 40px 40px";
+          
+          // Celebration animation
+          shape.style.animation = "happyBounce 0.5s ease-in-out, jump 1s ease-in-out 0.5s";
+          
+          // Create happy particles
+          createHappyParticles(shape);
+          
+          // Reset after animation
+          shape.addEventListener('animationend', function() {
+            setTimeout(() => {
+              window.location.href = "menu.html"; // Instead of redirecting, we'll stay on the page
+            }, 500);
+          }, {once: true});
+        });
+      } else {
+        // Failed login animation - angry shake
+        shapes.forEach(shape => {
+          // Make angry eyes
+          const eyes = shape.querySelectorAll('.eye');
+          eyes.forEach(eye => {
+            eye.style.transform = "scaleY(0.5)";
+            eye.style.borderRadius = "50% 50% 0 0";
+            eye.style.top = "-2px";
+          });
+          
+          // Make angry mouth
+          const mouth = shape.querySelector('.mouth');
+          mouth.style.height = "8px";
+          mouth.style.width = "60%";
+          mouth.style.borderRadius = "0 0 5px 5px";
+          
+          // Angry shake animation
+          shape.style.animation = "angryShake 0.6s ease-in-out";
+          
+          // Create anger particles
+          createAngerParticles(shape);
+          
+          // Reset after animation
+          setTimeout(() => {
+            eyes.forEach(eye => {
+              eye.style.transform = "";
+              eye.style.borderRadius = "50%";
+              eye.style.top = "";
+            });
+            
+            mouth.style.height = "10px";
+            mouth.style.width = "40%";
+            mouth.style.borderRadius = "20px";
+            
+            shape.style.animation = "";
+          }, 1000);
+        });
+        alert("Invalid login. Please try again. (Hint: Reno@gmail.com / 123456)");
+      }
+    });
+
+    // Create floating background particles
+    function createParticles() {
+      const container = document.getElementById('animationContainer');
+      const colors = ['orange', 'purple', 'black', 'gold'];
+      
+      for (let i = 0; i < 15; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        particle.style.width = Math.random() * 8 + 4 + 'px';
+        particle.style.height = particle.style.width;
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDuration = Math.random() * 10 + 5 + 's';
+        particle.style.animationDelay = Math.random() * 2 + 's';
+        
+        container.appendChild(particle);
+      }
+    }
+    
+    // Create anger particles for wrong login
+    function createAngerParticles(shape) {
+      const container = document.getElementById('animationContainer');
+      const rect = shape.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+      
+      for (let i = 0; i < 8; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'anger-particle';
+        
+        // Position relative to the container
+        const shapeX = rect.left - containerRect.left + rect.width/2;
+        const shapeY = rect.top - containerRect.top + rect.height/2;
+        
+        particle.style.left = shapeX + 'px';
+        particle.style.top = shapeY + 'px';
+        particle.style.setProperty('--x-direction', (Math.random() * 60 - 30) + 'px');
+        particle.style.animation = `angerBurst ${Math.random() * 0.5 + 0.5}s ease-out`;
+        
+        container.appendChild(particle);
+        
+        // Remove after animation
+        particle.addEventListener('animationend', () => {
+          particle.remove();
+        });
+      }
+    }
+    
+    // Create happy particles for successful login
+    function createHappyParticles(shape) {
+      const container = document.getElementById('animationContainer');
+      const rect = shape.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+      
+      for (let i = 0; i < 10; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'happy-particle';
+        
+        // Random colors for happy particles
+        const colors = ['yellow', 'orange', 'pink', 'cyan', 'lime'];
+        particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        
+        // Position relative to the container
+        const shapeX = rect.left - containerRect.left + rect.width/2;
+        const shapeY = rect.top - containerRect.top + rect.height/2;
+        
+        particle.style.left = (shapeX - 5 + Math.random() * 10) + 'px';
+        particle.style.top = (shapeY - 5 + Math.random() * 10) + 'px';
+        particle.style.animation = `happyBurst ${Math.random() * 0.5 + 0.7}s ease-out`;
+        
+        container.appendChild(particle);
+        
+        // Remove after animation
+        particle.addEventListener('animationend', () => {
+          particle.remove();
+        });
+      }
+    }
+
+    // Advanced mouse tracking for eyes and body
+    document.addEventListener('mousemove', function(e) {
+      const shapes = document.querySelectorAll('.shape');
+      const leftBox = document.querySelector('.left').getBoundingClientRect();
+      
+      shapes.forEach(shape => {
+        const shapeRect = shape.getBoundingClientRect();
+        const shapeCenterX = shapeRect.left + shapeRect.width / 2;
+        const shapeCenterY = shapeRect.top + shapeRect.height / 2;
+        
+        // Calculate angle and distance for body orientation
+        const angle = Math.atan2(e.clientY - shapeCenterY, e.clientX - shapeCenterX);
+        const distance = Math.sqrt(
+          Math.pow(e.clientX - shapeCenterX, 2) +
+          Math.pow(e.clientY - shapeCenterY, 2)
+        );
+        
+        // Calculate rotation and scale based on mouse distance
+        const maxRotation = 25; // maximum rotation in degrees
+        const rotationFactor = Math.min(distance / 300, 1);
+        const rotationAngle = angle * (180 / Math.PI);
+        const limitedRotation = rotationFactor * maxRotation * (rotationAngle > 0 ? 1 : -1);
+        
+        // Rotate body to follow mouse - dampen the effect for more natural movement
+        shape.style.transform = `rotate(${limitedRotation}deg)`;
+        
+        // Move eyes to follow mouse
+        const eyes = shape.querySelectorAll('.eye');
+        eyes.forEach(eye => {
+          const eyeRect = eye.getBoundingClientRect();
+          const eyeCenterX = eyeRect.left + eyeRect.width / 2;
+          const eyeCenterY = eyeRect.top + eyeRect.height / 2;
+          
+          // Calculate eye angle and distance
+          const eyeAngle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
+          const eyeDistance = Math.min(
+            Math.sqrt(
+              Math.pow(e.clientX - eyeCenterX, 2) +
+              Math.pow(e.clientY - eyeCenterY, 2)
+            ) / 100, 
+            1
+          );
+          
+          // Move pupil (the ::after element)
+          const maxMove = 3; // maximum pixel movement
+          const moveX = Math.cos(eyeAngle) * maxMove * eyeDistance;
+          const moveY = Math.sin(eyeAngle) * maxMove * eyeDistance;
+          
+          eye.querySelector('::after') // Target the pseudo-element
+          eye.style.setProperty('--pupil-x', `${moveX}px`);
+          eye.style.setProperty('--pupil-y', `${moveY}px`);
+          
+          // Direct DOM manipulation for the pupil
+          const pupil = eye.querySelector(':after');
+          if (pupil) {
+            pupil.style.transform = `translate(${moveX}px, ${moveY}px)`;
+          } else {
+            // Since we can't directly manipulate pseudo elements with JS,
+            // we'll adjust the eye position slightly
+            eye.style.transform = `translate(${moveX/2}px, ${moveY/2}px)`;
+          }
+        });
+        
+        // Adjust mouth based on mouse position
+        const mouth = shape.querySelector('.mouth');
+        const verticalDistance = Math.abs(e.clientY - shapeCenterY);
+        const mouthHeight = Math.max(10, Math.min(15, 10 + (verticalDistance / 50)));
+        
+        if (e.clientY < shapeCenterY) {
+          // Mouse above - smile
+          mouth.style.height = `${mouthHeight}px`;
+          mouth.style.borderRadius = "0 0 20px 20px";
+        } else {
+          // Mouse below - neutral/slight frown
+          mouth.style.height = `${Math.max(5, 10 - (verticalDistance / 100))}px`;
+          mouth.style.borderRadius = "20px";
+        }
+      });
+    });
+
+    // Initialize animations when page loads
+    window.onload = function() {
+      createParticles();
+    };
+  </script>
+</body>
+</html>

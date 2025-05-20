@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Municipality of Kolambugan - Lanao del Norte</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary: #1a5276;
+            --secondary: #2e86c1;
+            --accent: #f39c12;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: var(--primary);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        
+        .logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: url(logo.jpg);
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 18px;
+        }
+        
+        .site-title {
+            color: white;
+        }
+        
+        .site-title h1 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .site-title p {
+            font-size: 0.9rem;
+            color: var(--light);
+            opacity: 0.9;
+        }
+        
+        nav {
+            background-color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            justify-content: space-around;
+            padding: 15px 0;
+        }
+        
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links li a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .menu-toggle {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 10px 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(Kolambugan.jpg) center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1.5s;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1.5s;
+        }
+        
+        .hero-btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            animation: bounceIn 1.5s;
+        }
+        
+        .hero-btn:hover {
+            background-color: #e67e22;
+            transform: scale(1.05);
+        }
+        
+        /* Sections */
+        section {
+            padding: 80px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            display: inline-block;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--accent);
+        }
+        
+      
+        .about-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .about-image {
+            flex: 1 1 400px;
+            height: 400px;
+            background: url(municipal\ of\ kolambugan.jpg) center/cover no-repeat;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-text {
+            flex: 1 1 400px;
+        }
+        
+        .about-text h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .about-text p {
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+       
+        .barangay-section {
+            background-color: rgba(46, 134, 193, 0.1);
+        }
+        
+        .barangay-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .barangay-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .barangay-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .barangay-img-1 {
+            height: 200px;
+            background: url(barangay\ simbuco.jpg) center/cover no-repeat;
+        }
+        
+        .barangay-img-2 {
+            height: 200px;
+            background: url(barangay\ poblacion.jpg) center/cover no-repeat;
+        }
+        
+        .barangay-img-3 {
+            height: 200px;
+            background: url(barangay\ riverside.jpg) center/cover no-repeat;
+        }
+        
+        .barangay-img-4 {
+            height: 200px;
+            background: url(barangay\ matampay.jpg) center/cover no-repeat;
+        }
+        
+        .barangay-info {
+            padding: 20px;
+        }
+        
+        .barangay-info h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .barangay-info p {
+            color: var(--dark);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .barangay-btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .barangay-btn:hover {
+            background-color: var(--primary);
+        }
+        
+       
+        .projects-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--secondary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .project-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            margin-bottom: 30px;
+        }
+        
+        .project-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -13px;
+            background-color: var(--accent);
+            border: 4px solid var(--primary);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid var(--light);
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent var(--light);
+        }
+        
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid var(--light);
+            border-width: 10px 10px 10px 0;
+            border-color: transparent var(--light) transparent transparent;
+        }
+        
+        .right::after {
+            left: -12px;
+        }
+        
+        .project-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-content h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .project-content p {
+            line-height: 1.6;
+        }
+        
+        .project-date {
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+       
+        .news-section {
+            background-color: rgba(46, 134, 193, 0.1);
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .news-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .news-img-1 {
+            height: 200px;
+            background: url(municipal\ anniversary.jpg) center/cover no-repeat;
+        }
+        
+        .news-img-2 {
+            height: 200px;
+            background: url(cleanup.jpg) center/cover no-repeat;
+        }
+        
+        .news-img-3 {
+            height: 200px;
+            background: url(agricultural\ traning.jpg) center/cover no-repeat;
+        }
+        
+        .news-content {
+            padding: 20px;
+        }
+        
+        .news-date {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .news-content h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+        
+        .news-content p {
+            color: var(--dark);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .read-more {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .read-more i {
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .read-more:hover i {
+            transform: translateX(5px);
+        }
+        
+        
+        .tourism-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .tourism-slider {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 40px;
+        }
+        
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+        }
+        
+        .slide-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .slider-controls {
+            position: absolute;
+            bottom: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            transform: translateY(50%);
+        }
+        
+        .slider-btn {
+            background-color: rgba(255, 255, 255, 0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .slider-btn:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .tourism-spots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .spot-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .spot-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .spot-img-1 {
+            height: 200px;
+            background: url(sunset.jpg) center/cover no-repeat;
+        }
+        
+        .spot-img-2 {
+            height: 200px;
+            background: url(heritage\ park.jpg) center/cover no-repeat;
+        }
+        
+        .spot-img-3 {
+            height: 200px;
+            background: url(mountain\ view\ park.jpg) center/cover no-repeat;
+        }
+        
+        .spot-info {
+            padding: 20px;
+        }
+        
+        .spot-info h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .spot-info p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .spot-features {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            color: var(--secondary);
+        }
+        
+        .feature i {
+            margin-right: 5px;
+        }
+        
+       
+        .contact-section {
+            background-color: rgba(46, 134, 193, 0.1);
+        }
+        
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .contact-info {
+            flex: 1 1 400px;
+        }
+        
+        .contact-info h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .info-item {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .info-item i {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-right: 15px;
+            min-width: 30px;
+        }
+        
+        .info-text h4 {
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+        
+        .contact-form {
+            flex: 1 1 500px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-form h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        textarea.form-control {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background-color: #e67e22;
+        }
+        
+        /* Social Media */
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-btn:hover {
+            background-color: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        
+        .footer-section {
+            flex: 1 1 300px;
+            text-align: left;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+        
+        .footer-section p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .quick-links {
+            list-style: none;
+        }
+        
+        .quick-links li {
+            margin-bottom: 10px;
+        }
+        
+        .quick-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .quick-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            width: 100%;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+      
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .project-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .project-item::before {
+                left: 60px;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent var(--light) transparent transparent;
+            }
+            
+            .left::after, .right::after {
+                left: 15px;
+            }
+            
+            .right {
+                left: 0%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--primary);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 80px;
+                transition: right 0.3s ease;
+                z-index: 998;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .close-menu {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                font-size: 1.5rem;
+                color: white;
+                cursor: pointer;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .about-image {
+                height: 300px;
+            }
+            
+            .logo {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .site-title h1 {
+                font-size: 1.2rem;
+            }
+            
+            .site-title p {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <div class="logo-container">
+            <div class="logo"></div>
+            <div class="site-title">
+                <h1>Municipality of Kolambugan</h1>
+                <p>Lanao del Norte, Philippines</p>
+            </div>
+        </div>
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav>
+            <ul class="nav-links" id="navLinks">
+                <span class="close-menu" id="closeMenu"><i class="fas fa-times"></i></span>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#barangay">Barangay</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#tourism">Tourism</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+   
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="animate__animated animate__fadeInDown">Welcome to Kolambugan</h1>
+            <p class="animate__animated animate__fadeInUp">Discover the beauty and charm of Kolambugan, a progressive municipality in Lanao del Norte</p>
+            <a href="#about" class="hero-btn animate__animated animate__bounceIn">Click</a>
+        </div>
+    </section>
+    
+    
+    <section id="about" class="about-section">
+        <div class="section-title">
+            <h2>About Our Municipality</h2>
+        </div>
+        <div class="about-container">
+            <div class="about-image fade-in"></div>
+            <div class="about-text fade-in">
+                <h3>Welcome to Kolambugan</h3>
+                <p>Kolambugan is a progressive 3rd class municipality in the province of Lanao del Norte, Philippines. Located along the coastal area of Panguil Bay, it is known for its rich cultural heritage, natural resources, and warm, friendly people.</p>
+                <p>The municipality was founded in 1936 and has since developed into a vibrant community with a growing economy focused on agriculture, fishing, and trade. Kolambugan is strategically positioned, making it an important gateway to other municipalities and provinces in Mindanao.</p>
+                <p>Our municipality spans approximately 134.55 square kilometers and is home to over 30,000 residents spread across 26 barangays. The people of Kolambugan are known for their hospitality, strong community ties, and dedication to preserving their cultural traditions while embracing progress.</p>
+                <p>Kolambugan is blessed with natural resources including fertile agricultural lands, rich marine resources from Panguil Bay, and scenic landscapes that attract visitors. The local economy is diversified with thriving sectors in agriculture, fisheries, small-scale industries, and an emerging tourism industry.</p>
+                <p>With its beautiful beaches, historical sites, and flourishing local industries, Kolambugan offers a unique blend of traditional and modern Filipino culture. Our municipality is committed to sustainable development, environmental protection, and improving the quality of life for all residents.</p>
+            </div>
+        </div>
+    </section>
+    
+    
+    <section id="barangay" class="barangay-section">
+        <div class="section-title">
+            <h2>Our Barangays</h2>
+        </div>
+        <div class="barangay-grid">
+            <div class="barangay-card fade-in">
+                <div class="barangay-img-1"></div>
+                <div class="barangay-info">
+                    <h3>Barangay Simbuco</h3>
+                    <p>Famous for its local industries and vibrant community activities. This barangay is developing rapidly with various community initiatives and programs. Simbuco is known for its thriving small-scale businesses and agricultural production.</p>
+                    <a href="#" class="barangay-btn">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="barangay-card fade-in">
+                <div class="barangay-img-2"></div>
+                <div class="barangay-info">
+                    <h3>Barangay Poblacion</h3>
+                    <p>The center of municipal activities and government offices. Poblacion hosts the main commercial district, municipal hall, church, and other important public facilities. It's the most urbanized area of Kolambugan.</p>
+                    <a href="#" class="barangay-btn">Learn More</a>
+                </div>
+            </div>
+            
+           <div class="barangay-card fade-in">
+                <div class="barangay-img-3"></div>
+                <div class="barangay-info">
+                    <h3>Barangay Riverside</h3>
+                    <p>Known for its scenic views and proximity to waterways. This barangay is popular for its fishing activities and beautiful nature spots. The residents here maintain traditional fishing practices while embracing modern techniques.</p>
+                    <a href="#" class="barangay-btn">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="barangay-card fade-in">
+                <div class="barangay-img-4"></div>
+                <div class="barangay-info">
+                    <h3>Barangay Matampay</h3>
+                    <p>A thriving agricultural community with vast rice fields and plantations. Matampay is the primary source of agricultural products in the municipality and hosts several farmer cooperatives and agricultural programs.</p>
+                    <a href="#" class="barangay-btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="section-title">
+            <h2>Development Projects</h2>
+        </div>
+        <div class="projects-container">
+            <div class="timeline">
+                <div class="project-item left fade-in">
+                    <div class="project-content">
+                        <span class="project-date">January 2025</span>
+                        <h3>Public Market Renovation</h3>
+                        <p>Complete renovation and modernization of the municipal public market to provide better facilities for vendors and customers. The project includes improved stalls, proper drainage systems, and better waste management facilities.</p>
+                    </div>
+                </div>
+                
+                <div class="project-item right fade-in">
+                    <div class="project-content">
+                        <span class="project-date">November 2024</span>
+                        <h3>Coastal Road Expansion</h3>
+                        <p>Expansion of the coastal road connecting major barangays to improve transportation and boost tourism in the area. This project has significantly reduced travel time between coastal communities.</p>
+                    </div>
+                </div>
+                
+                <div class="project-item left fade-in">
+                    <div class="project-content">
+                        <span class="project-date">August 2024</span>
+                        <h3>Healthcare Center Establishment</h3>
+                        <p>Construction of a modern healthcare center with improved facilities to provide better medical services to residents. The center is equipped with new medical equipment and staffed by qualified healthcare professionals.</p>
+                    </div>
+                </div>
+                
+                <div class="project-item right fade-in">
+                    <div class="project-content">
+                        <span class="project-date">March 2024</span>
+                        <h3>Clean Water System</h3>
+                        <p>Implementation of a comprehensive clean water system reaching remote barangays to ensure access to safe drinking water for all residents. This project has significantly reduced waterborne diseases in the municipality.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- News Section -->
+    <section id="news" class="news-section">
+        <div class="section-title">
+            <h2>Latest News</h2>
+        </div>
+        <div class="news-grid">
+            <div class="news-card fade-in">
+                <div class="news-img-1"></div>
+                <div class="news-content">
+                    <span class="news-date">May 15, 2025</span>
+                    <h3>Municipal Anniversary Celebration</h3>
+                    <p>The Municipality of Kolambugan celebrates its founding anniversary with a week-long festivity featuring cultural performances, trade fairs, and various community activities.</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="news-card fade-in">
+                <div class="news-img-2"></div>
+                <div class="news-content">
+                    <span class="news-date">April 28, 2025</span>
+                    <h3>Coastal Cleanup Drive Success</h3>
+                    <p>Local government units, schools, and private organizations join forces for a massive coastal cleanup drive, collecting over two tons of waste from Kolambugan's shorelines.</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="news-card fade-in">
+                <div class="news-img-3"></div>
+                <div class="news-content">
+                    <span class="news-date">April 10, 2025</span>
+                    <h3>Agricultural Training for Farmers</h3>
+                    <p>The Department of Agriculture conducts comprehensive training sessions for local farmers on modern farming techniques, sustainable agriculture, and crop diversification.</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Tourism Section -->
+    <section id="tourism" class="tourism-section">
+        <div class="section-title">
+            <h2>Tourism Spots</h2>
+        </div>
+        <div class="tourism-container">
+            <div class="tourism-slider">
+                <div class="slide active" style="background-image: url(Kolambugan\ beach\ resort.jpg)">
+                    <div class="slide-content">
+                        <h3>Kolambugan Beach Resort</h3>
+                        <p>Experience the beautiful coastal view and crystal clear waters of our premier beach resort.</p>
+                    </div>
+                </div>
+                <div class="slide" style="background-image: url(historical.jpg)">
+                    <div class="slide-content">
+                        <h3>Historical Landmarks</h3>
+                        <p>Discover the rich history of Kolambugan through its preserved historical landmarks and monuments.</p>
+                    </div>
+                </div>
+                <div class="slide" style="background-image: url(scenic\ mountain\ views.jpg)">
+                    <div class="slide-content">
+                        <h3>Scenic Mountain Views</h3>
+                        <p>Enjoy breathtaking views from our highlands and experience the natural beauty of our surroundings.</p>
+                    </div>
+                </div>
+                <div class="slider-controls">
+                    <div class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></div>
+                    <div class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+            
+            <div class="tourism-spots">
+                <div class="spot-card fade-in">
+                    <div class="spot-img-1"></div>
+                    <div class="spot-info">
+                        <h3>Sunset Beach Resort</h3>
+                        <p>Famous for its breathtaking sunset views and clean beaches, perfect for swimming and relaxation.</p>
+                        <div class="spot-features">
+                            <span class="feature"><i class="fas fa-swimming-pool"></i> Swimming</span>
+                            <span class="feature"><i class="fas fa-utensils"></i> Dining</span>
+                            <span class="feature"><i class="fas fa-bed"></i> Lodging</span>
+                        </div>
+                        <a href="#" class="barangay-btn">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="spot-card fade-in">
+                    <div class="spot-img-2"></div>
+                    <div class="spot-info">
+                        <h3>Heritage Park</h3>
+                        <p>A cultural and historical park showcasing the rich heritage and history of Kolambugan through various artifacts and exhibits.</p>
+                        <div class="spot-features">
+                            <span class="feature"><i class="fas fa-landmark"></i> Museum</span>
+                            <span class="feature"><i class="fas fa-tree"></i> Garden</span>
+                            <span class="feature"><i class="fas fa-camera"></i> Photo Spots</span>
+                        </div>
+                        <a href="#" class="barangay-btn">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="spot-card fade-in">
+                    <div class="spot-img-3"></div>
+                    <div class="spot-info">
+                        <h3>Mountain View Park</h3>
+                        <p>Experience the natural beauty of Kolambugan's highlands with hiking trails and picnic areas for the whole family.</p>
+                        <div class="spot-features">
+                            <span class="feature"><i class="fas fa-hiking"></i> Hiking</span>
+                            <span class="feature"><i class="fas fa-campground"></i> Camping</span>
+                            <span class="feature"><i class="fas fa-binoculars"></i> Viewing Deck</span>
+                        </div>
+                        <a href="#" class="barangay-btn">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="section-title">
+            <h2>Contact Us</h2>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info fade-in">
+                <h3>Get In Touch</h3>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="info-text">
+                        <h4>Address</h4>
+                        <p>Municipal Hall, Poblacion, Kolambugan, Lanao del Norte, Philippines, 9207</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <div class="info-text">
+                        <h4>Phone</h4>
+                        <p>+63 (88) 123-4567</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <div class="info-text">
+                        <h4>Email</h4>
+                        <p>info@kolambugan.gov.ph</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <div class="info-text">
+                        <h4>Office Hours</h4>
+                        <p>Monday to Friday: 8:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="contact-form fade-in">
+                <h3>Send Us a Message</h3>
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About Kolambugan</h3>
+                <p>Kolambugan is a progressive municipality in Lanao del Norte known for its rich cultural heritage, natural resources, and friendly people. We are committed to sustainable development and improving the quality of life for all residents.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="quick-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#barangay">Barangay</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#news">News</a></li>
+                    <li><a href="#tourism">Tourism</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Government Links</h3>
+                <ul class="quick-links">
+                    <li><a href="https://www.gov.ph" target="_blank">Philippine Government Portal</a></li>
+                    <li><a href="https://www.dilg.gov.ph" target="_blank">Department of Interior and Local Government</a></li>
+                    <li><a href="https://tourism.gov.ph" target="_blank">Department of Tourism</a></li>
+                    <li><a href="#" target="_blank">Lanao del Norte Provincial Government</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Municipality of Kolambugan. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <a href="#home" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+    
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        const closeMenu = document.getElementById('closeMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.add('active');
+        });
+        
+        closeMenu.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+        
+        // Back to Top Button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('active');
+            } else {
+                backToTopButton.classList.remove('active');
+            }
+        });
+        
+        // Scroll Animation
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeIn = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('appear');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', fadeIn);
+        window.addEventListener('load', fadeIn);
+        
+        // Image Slider for Tourism Section
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        let currentSlide = 0;
+        
+        const showSlide = (n) => {
+            slides.forEach(slide => slide.classList.remove('active'));
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        };
+        
+        prevBtn.addEventListener('click', () => {
+            showSlide(currentSlide - 1);
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            showSlide(currentSlide + 1);
+        });
+        
+        // Auto slide change
+        setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 5000);
+    </script>
+</body>
+</html>
